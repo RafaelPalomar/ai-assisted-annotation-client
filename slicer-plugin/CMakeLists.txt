@@ -21,5 +21,5 @@ add_subdirectory(NvidiaAIAA)
 ## NEXT_MODULE
 
 #-----------------------------------------------------------------------------
-include(${Slicer_EXTENSION_GENERATE_CONFIG})
-include(${Slicer_EXTENSION_CPACK})
+#include(${Slicer_EXTENSION_GENERATE_CONFIG})
+#include(${Slicer_EXTENSION_CPACK})
