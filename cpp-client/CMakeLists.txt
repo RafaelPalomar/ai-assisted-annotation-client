@@ -71,10 +71,30 @@ target_link_libraries(NvidiaAIAAClient ${ITK_LIBRARIES})
 
 include(CMakePackageConfigHelpers)
 
+if (NOT DEFINED NvidiaAIAAClient_LIBRARIES_DIR)
+  set(NvidiaAIAAClient_LIBRARIES_DIR "lib")
+endif()
+
+if (NOT DEFINED NvidiaAIAAClient_ARCHIVE_DIR)
+  set(NvidiaAIAAClient_ARCHIVE_DIR "lib")
+endif()
+
+if (NOT DEFINED NvidiaAIAAClient_BINARIES_DIR)
+  set(NvidiaAIAAClient_BINARIES_DIR "bin")
+endif()
+
+if (NOT DEFINED NvidiaAIAAClient_INCLUDE_DIR)
+  set(NvidiaAIAAClient_INCLUDE_DIR "include/nvidia/aiaa")
+endif()
+
+if (NOT DEFINED NvidiaAIAAClient_CMAKE_DIR)
+  set(NvidiaAIAAClient_CMAKE_DIR "lib/cmake")
+endif()
+
 install(TARGETS NvidiaAIAAClient EXPORT NvidiaAIAAClientTargets
-    ARCHIVE  DESTINATION lib
-    LIBRARY  DESTINATION lib
-    RUNTIME  DESTINATION bin)
+    ARCHIVE  DESTINATION ${NvidiaAIAAClient_ARCHIVE_DIR}
+    LIBRARY  DESTINATION ${NvidiaAIAAClient_LIBRARIES_DIR}
+    RUNTIME  DESTINATION ${NvidiaAIAAClient_BINARIES_DIR})
 
 install(FILES 
          include/nvidia/aiaa/client.h
@@ -88,7 +108,7 @@ install(FILES
          include/nvidia/aiaa/exception.h
        DESTINATION include/nvidia/aiaa)
 
-install(EXPORT NvidiaAIAAClientTargets DESTINATION lib/cmake/NvidiaAIAAClient)
+install(EXPORT NvidiaAIAAClientTargets DESTINATION "${NvidiaAIAAClient_CMAKE_DIR}/NvidiaAIAAClient")
 
 #export(TARGETS NvidiaAIAAClient FILE NvidiaAIAAClientConfig.cmake)
 
